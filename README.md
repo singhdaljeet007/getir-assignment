@@ -42,3 +42,41 @@ check for localhost:3000
 # testing the search record API locally
   localhost:3000/record/search
   
+
+# Docker & heroku setup
+A Dockerfile is added with the build steps to build angular project and then compile nodejs project along with a startup command.
+
+Application was pushed to heroku via cli using below comands:
+
+heroku login
+
+heroku create --app getir-assignment-020393
+
+heroku container:login
+
+heroku container:push web --app getir-assignment-020393
+
+heroku container:release web --app getir-assignment-020393
+
+heroku logs --tail --app getir-assignment-020393
+
+
+# Runing the Live version
+
+Live version can be accessed at
+
+https://getir-assignment-020393.herokuapp.com/
+
+To fetch records matching given criteria use below CURL
+
+curl -X POST \
+  https://getir-assignment-020393.herokuapp.com/record/search \
+  -H 'cache-control: no-cache' \
+  -H 'content-type: application/json' \
+  -H 'postman-token: b7c7f13c-fc98-b803-268e-ab6efe7c59d7' \
+  -d '{
+	"startDate":"2015-11-28",
+	"endDate":"2015-12-01",
+	"minCount":2000,
+	"maxCount":10000
+}'
