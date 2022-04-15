@@ -9,11 +9,11 @@ touch tsconfig.json
 mkdir src && touch src/app.ts && touch src/server.ts
 touch .gitignore
 
- # Running application
+ # Running application locally
 Add below scriipt to package.json
     "start": "ts-node ./src/server.ts"
 
-# server startup
+# inital server startup
 npm run start
 check for localhost:3000
 
@@ -39,3 +39,6 @@ check for localhost:3000
 - creating record interfaces & model
     mkdir record && touch record/record.model.ts && touch record/record.interface.ts 
 
+# testing the search record API locally
+  localhost:3000/record/search
+  

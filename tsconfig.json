@@ -7,7 +7,9 @@
       "alwaysStrict": true,
       "noImplicitAny": true,
       "experimentalDecorators": true,
-      "emitDecoratorMetadata": true
+      "emitDecoratorMetadata": true,
+      "module" : "commonjs",
+      "moduleResolution":"node"
     },
     "include": [
       "src/**/*.ts"

@@ -1,7 +1,10 @@
-import { Request, Response, Router } from "express";
+import { NextFunction, Request, Response, Router } from "express";
 import Controller from "../interfaces/controller.interface";
+import SearchRecordDto from "./record.dto";
 import { SearchRequest } from "./record.interface";
 import recordModel from "./record.model";
+import HttpException from "../exception/http";
+import validationMiddleware from "../middleware/validation.middleware";
 
 class RecordController implements Controller {
   public path = "/record";
@@ -12,17 +15,11 @@ class RecordController implements Controller {
   }
 
   private initializeRoutes() {
-    this.router.get(`${this.path}/ping`, this.ping);
-    this.router.post(`${this.path}/search`, this.search);
+    this.router.post(`${this.path}/search`,validationMiddleware(SearchRecordDto), this.search);
   }
 
-  private ping = async (request: Request, response: Response) => {
-    response.send("pong!");
-  };
-
-  search = async (request: Request, response: Response) => {
+  search = async (request: Request, response: Response,next:NextFunction) => {
     const searchData: SearchRequest = request.body;
-    console.log("searchData:", searchData);
     const recordsByCriteria = await this.record
       .aggregate([
         {
@@ -47,8 +44,11 @@ class RecordController implements Controller {
         },
       ])
       .exec();
-
-    response.status(200).send(recordsByCriteria);
+    if(recordsByCriteria && recordsByCriteria?.length>0){
+      response.status(200).send(recordsByCriteria);
+    }else{
+      next(new HttpException(500, 'No matching records found!'));
+    }
   };
 }
 
