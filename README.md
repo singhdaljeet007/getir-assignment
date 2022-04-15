@@ -20,30 +20,38 @@ check for localhost:3000
 # adding business logic
 
 - setting up controller interface
-    mkdir interfaces && touch interfaces/controller.interface.ts
+
+mkdir interfaces && touch interfaces/controller.interface.ts
 
 - adding record controller with health check route
-    mkdir record && touch record/record.controller.ts
+
+mkdir record && touch record/record.controller.ts
 
 - testing /ping route
-   check below URL ion the browser
-   localhost:3000/ping -> should return pong!
+
+check below URL ion the browser
+
+localhost:3000/ping -> should return pong!
 
 - setting up DB connection
-  npm i mongoose && npm i --save-dev @types/mongoose
+
+npm i mongoose && npm i --save-dev @types/mongoose
 
 - adding dotenv
-    npm i dotenv
-    touch .env
+
+npm i dotenv && touch .env
 
 - creating record interfaces & model
-    mkdir record && touch record/record.model.ts && touch record/record.interface.ts 
+
+mkdir record && touch record/record.model.ts && touch record/record.interface.ts 
 
 # testing the search record API locally
-  localhost:3000/record/search
+
+localhost:3000/record/search
   
 
 # Docker & heroku setup
+
 A Dockerfile is added with the build steps to build angular project and then compile nodejs project along with a startup command.
 
 Application was pushed to heroku via cli using below comands:
