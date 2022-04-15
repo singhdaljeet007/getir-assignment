@@ -22,10 +22,20 @@ check for localhost:3000
 - setting up controller interface
     mkdir interfaces && touch interfaces/controller.interface.ts
 
-- adding record controller
+- adding record controller with health check route
     mkdir record && touch record/record.controller.ts
 
-#  testing /ping route
+- testing /ping route
    check below URL ion the browser
    localhost:3000/ping -> should return pong!
+
+- setting up DB connection
+  npm i mongoose && npm i --save-dev @types/mongoose
+
+- adding dotenv
+    npm i dotenv
+    touch .env
+
+- creating record interfaces & model
+    mkdir record && touch record/record.model.ts && touch record/record.interface.ts 
 
