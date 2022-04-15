@@ -1,5 +1,6 @@
 import * as bodyParser from 'body-parser';
 import * as express from 'express';
+import postOnlyMiddleware from './middleware/postOnly.middleware';
 import * as mongoose from 'mongoose';
 import Controller from './interfaces/controller.interface';
 import errorMiddleware from './middleware/error.middleware';
@@ -26,6 +27,7 @@ class App {
   }
 
   private initializeMiddlewares() {
+    this.app.use(postOnlyMiddleware)
     this.app.use(bodyParser.json());
   }
 
