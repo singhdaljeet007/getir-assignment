@@ -16,3 +16,16 @@ Add below scriipt to package.json
 # server startup
 npm run start
 check for localhost:3000
+
+# adding business logic
+
+- setting up controller interface
+    mkdir interfaces && touch interfaces/controller.interface.ts
+
+- adding record controller
+    mkdir record && touch record/record.controller.ts
+
+#  testing /ping route
+   check below URL ion the browser
+   localhost:3000/ping -> should return pong!
+
